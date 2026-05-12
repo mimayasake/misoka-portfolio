@@ -1,0 +1,49 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/design", label: "Design" },
+  { href: "/writing", label: "Writing" },
+  { href: "/development", label: "Development" },
+];
+
+function isActive(href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-[#1d1d1d]/10 bg-white/90 backdrop-blur-md transition-colors"
+  transition:persist="site-header"
+>
+  <div
+    class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-8"
+  >
+    <a
+      href="/"
+      class="text-lg font-semibold tracking-tight text-[#1d1d1d] transition-colors hover:text-[#6822ff]"
+    >
+      misoka
+    </a>
+    <nav class="flex flex-wrap items-center justify-end gap-x-1 gap-y-2 text-sm font-medium md:gap-x-2">
+      {
+        links.map(({ href, label }) => (
+          <a
+            href={href}
+            class:list={[
+              "rounded-md px-2.5 py-1.5 transition-colors md:px-3",
+              isActive(href)
+                ? "bg-[#6822ff]/10 text-[#6822ff]"
+                : "text-[#1d1d1d]/80 hover:bg-[#1d1d1d]/5 hover:text-[#6822ff]",
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

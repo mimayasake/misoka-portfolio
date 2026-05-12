@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import WorkGrid from "../components/WorkGrid.astro";
+import { worksByTag } from "../data/works";
+
+const items = worksByTag("writing");
+---
+
+<BaseLayout
+  title="Writing"
+  description="ライティングタグの制作物一覧 — 台本、告知文、ドキュメントなど。"
+>
+  <Header />
+  <main>
+    <WorkGrid items={items} heading="Writing" id="writing-works" />
+  </main>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import WorkGrid from "../components/WorkGrid.astro";
+import { worksByTag } from "../data/works";
+
+const items = worksByTag("development");
+---
+
+<BaseLayout
+  title="Development"
+  description="開発タグの制作物一覧 — UdonSharp、ギミック、実装関連。"
+>
+  <Header />
+  <main>
+    <WorkGrid items={items} heading="Development" id="development-works" />
+  </main>
+</BaseLayout>

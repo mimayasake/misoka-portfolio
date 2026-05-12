@@ -1,0 +1,49 @@
+---
+import type { WorkItem } from "../data/works";
+
+interface Props {
+  item: WorkItem;
+}
+
+const { item } = Astro.props;
+const thumb = item.thumbnail ?? "/og-default-thumb.svg";
+const Tag = item.link ? "a" : "div";
+---
+
+<Tag
+  class:list={[
+    "work-item group flex h-full flex-col overflow-hidden rounded-xl border border-[#1d1d1d]/10 bg-white shadow-sm transition-[box-shadow,transform,border-color] hover:-translate-y-0.5 hover:border-[#6822ff]/25 hover:shadow-md",
+    item.link && "cursor-pointer",
+  ]}
+  {...item.link ? { href: item.link } : {}}
+  {...item.link ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+>
+  <div class="relative aspect-[1200/630] w-full overflow-hidden bg-[#f3f0ff]">
+    <img
+      src={thumb}
+      alt=""
+      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+      width="1200"
+      height="630"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-4 md:p-5">
+    <h2 class="text-lg font-semibold tracking-tight text-[#1d1d1d] transition-colors group-hover:text-[#6822ff]">
+      {item.title}
+    </h2>
+    <p class="text-sm leading-relaxed text-[#1d1d1d]/75">
+      {item.description}
+    </p>
+    <div class="mt-auto flex flex-wrap gap-2 pt-2">
+      {
+        item.tags.map((t) => (
+          <span class="rounded-full bg-[#1d1d1d]/5 px-2.5 py-0.5 text-xs font-medium text-[#1d1d1d]/80">
+            {t}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</Tag>

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fg: #1d1d1d;
+  --color-main: #6822ff;
+  --color-accent: #ff2348;
+  --color-surface: #ffffff;
+  --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+    color: var(--color-fg);
+    background-color: var(--color-surface);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-main) 25%, transparent);
+  }
+}

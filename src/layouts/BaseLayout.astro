@@ -1,0 +1,39 @@
+---
+import { ClientRouter } from "astro:transitions";
+import LoadingScreen from "../components/LoadingScreen.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "VRChatユーザ misoka のポートフォリオ — イベント制作・ワールド制作のご依頼に向けた制作物一覧です。",
+} = Astro.props;
+const pageTitle = title === "misoka" ? title : `${title} | misoka`;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{pageTitle}</title>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-white font-sans text-fg">
+    <LoadingScreen />
+    <slot />
+  </body>
+</html>
