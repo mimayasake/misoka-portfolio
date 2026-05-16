@@ -1,12 +1,15 @@
 ---
 import type { WorkItem } from "../data/works";
+import { asset } from '../utils/path';
 
 interface Props {
   item: WorkItem;
 }
 
 const { item } = Astro.props;
-const thumb = item.thumbnail ?? "/og-default-thumb.svg";
+const thumb = item.thumbnail 
+  ? asset(item.thumbnail)
+  : asset('og-default-thumb.svg');
 const Tag = item.link ? "a" : "div";
 ---
 

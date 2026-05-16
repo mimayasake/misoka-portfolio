@@ -2,6 +2,8 @@
 /**
  * 初回セッション時のみ表示。ロゴは public/logo.svg を差し替えてください。
  */
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.svg';
 ---
 
 <div
@@ -10,11 +12,11 @@
   aria-hidden="true"
 >
   <div class="flex max-w-[min(80vw,280px)] flex-col items-center gap-6 px-6">
-    <img
-      src="/logo.svg"
+    <Image
+      src={logo}
       alt="misoka"
-      width="200"
-      height="80"
+      width={200}
+      height={80}
       class="h-auto w-full max-w-[200px] object-contain"
       loading="eager"
       decoding="async"

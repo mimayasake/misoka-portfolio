@@ -1,12 +1,13 @@
 ---
-const pathname = Astro.url.pathname;
+import { base } from '../utils/base';
 
+const pathname = Astro.url.pathname;
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/design", label: "Design" },
-  { href: "/writing", label: "Writing" },
-  { href: "/development", label: "Development" },
+  { href: base, label: "Home" },
+  { href: `${base}about`, label: "About" },
+  { href: `${base}design`, label: "Design" },
+  { href: `${base}writing`, label: "Writing" },
+  { href: `${base}development`, label: "Development" },
 ];
 
 function isActive(href: string): boolean {
