@@ -1,25 +1,22 @@
 ---
 import type { WorkItem } from "../data/works";
 import { asset } from '../utils/path';
+import { base } from '../utils/base';
 
 interface Props {
   item: WorkItem;
 }
 
 const { item } = Astro.props;
-const thumb = item.thumbnail 
+const thumb = item.thumbnail
   ? asset(item.thumbnail)
   : asset('og-default-thumb.svg');
-const Tag = item.link ? "a" : "div";
+const href = `${base}works/${item.id}`;
 ---
 
-<Tag
-  class:list={[
-    "work-item group flex h-full flex-col overflow-hidden rounded-xl border border-[#1d1d1d]/10 bg-white shadow-sm transition-[box-shadow,transform,border-color] hover:-translate-y-0.5 hover:border-[#6822ff]/25 hover:shadow-md",
-    item.link && "cursor-pointer",
-  ]}
-  {...item.link ? { href: item.link } : {}}
-  {...item.link ? { target: "_blank", rel: "noopener noreferrer" } : {}}
+<a
+  class="work-item group flex h-full flex-col overflow-hidden rounded-xl border border-[#1d1d1d]/10 bg-white shadow-sm transition-[box-shadow,transform,border-color] hover:-translate-y-0.5 hover:border-[#6822ff]/25 hover:shadow-md"
+  href={href}
 >
   <div class="relative aspect-[1200/630] w-full overflow-hidden bg-[#f3f0ff]">
     <img
@@ -49,4 +46,4 @@ const Tag = item.link ? "a" : "div";
       }
     </div>
   </div>
-</Tag>
+</a>

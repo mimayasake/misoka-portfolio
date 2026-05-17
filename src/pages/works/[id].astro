@@ -1,0 +1,135 @@
+---
+import { workItems } from "../../data/works";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import { asset } from "../../utils/path";
+import { base } from "../../utils/base";
+
+export function getStaticPaths() {
+  return workItems.map((item) => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+
+const detailImage = item.detailImage
+  ? asset(item.detailImage)
+  : item.thumbnail
+    ? asset(item.thumbnail)
+    : null;
+
+const externalCardImage = item.externalCard?.image
+  ? asset(item.externalCard.image)
+  : null;
+
+const bodyText = item.body ?? item.description;
+---
+
+<BaseLayout title={item.title} description={item.description}>
+  <Header />
+  <main class="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-16">
+
+    <nav class="mb-8 text-sm text-[#1d1d1d]/50">
+      <a href={base} class="hover:text-[#6822ff] transition-colors">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-[#1d1d1d]/80">{item.title}</span>
+    </nav>
+
+    <h1 class="mb-10 text-3xl font-bold tracking-tight text-[#1d1d1d] md:text-4xl">
+      {item.title}
+    </h1>
+
+    <div class="flex flex-col gap-8 md:flex-row md:gap-12">
+
+      <!-- 左カラム: 詳細画像 または 外部リンクカード -->
+      <div class="w-full md:w-[55%] md:shrink-0">
+        {item.externalCard ? (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group block overflow-hidden rounded-xl border border-[#1d1d1d]/10 bg-white shadow-sm transition-[box-shadow,border-color] hover:border-[#6822ff]/25 hover:shadow-md"
+          >
+            {externalCardImage && (
+              <div class="aspect-[1200/630] w-full overflow-hidden bg-[#f3f0ff]">
+                <img
+                  src={externalCardImage}
+                  alt=""
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            <div class="px-4 py-3.5">
+              {item.externalCard.siteName && (
+                <p class="mb-0.5 text-xs text-[#1d1d1d]/40">{item.externalCard.siteName}</p>
+              )}
+              <p class="font-semibold text-[#1d1d1d] transition-colors group-hover:text-[#6822ff] line-clamp-1">
+                {item.externalCard.title}
+              </p>
+              {item.externalCard.description && (
+                <p class="mt-1 text-sm text-[#1d1d1d]/60 line-clamp-2">
+                  {item.externalCard.description}
+                </p>
+              )}
+            </div>
+          </a>
+        ) : detailImage ? (
+          <div class="overflow-hidden rounded-xl border border-[#1d1d1d]/10 bg-[#f3f0ff]">
+            <img
+              src={detailImage}
+              alt={item.title}
+              class="max-h-[60vh] w-full object-contain md:max-h-[70vh]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <div class="flex aspect-[4/3] items-center justify-center rounded-xl border border-dashed border-[#1d1d1d]/15 bg-[#1d1d1d]/[0.02]">
+            <span class="text-sm text-[#1d1d1d]/30">No image</span>
+          </div>
+        )}
+      </div>
+
+      <!-- 右カラム: 説明文・タグ・外部リンクボタン -->
+      <div class="flex flex-1 flex-col gap-6">
+        <div class="flex flex-wrap gap-2">
+          {item.tags.map((t) => (
+            <span class="rounded-full bg-[#1d1d1d]/5 px-3 py-1 text-xs font-medium text-[#1d1d1d]/80">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div class="text-base leading-relaxed text-[#1d1d1d]/85 whitespace-pre-line">
+          {bodyText}
+        </div>
+
+        <div class="mt-auto flex flex-wrap items-center gap-4 text-sm text-[#1d1d1d]/40">
+          <time datetime={item.date}>{item.date}</time>
+        </div>
+
+        {item.link && (
+          <div>
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex w-full items-center justify-center gap-2 rounded-full border border-[#6822ff]/30 bg-[#6822ff]/5 px-5 py-2.5 text-sm font-medium text-[#6822ff] transition-colors hover:bg-[#6822ff] hover:text-white md:w-auto"
+          >
+            外部リンクを開く
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+          </div>
+        )}
+      </div>
+    </div>
+  </main>
+</BaseLayout>

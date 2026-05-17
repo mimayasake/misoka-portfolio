@@ -6,6 +6,7 @@
   --color-accent: #ff2348;
   --color-surface: #ffffff;
   --font-sans: "Onest", ui-sans-serif, system-ui, sans-serif;
+  --font-jp: "Onest", "Noto Sans JP", sans-serif;
 }
 
 @layer base {
@@ -18,4 +19,8 @@
   ::selection {
     background-color: color-mix(in srgb, var(--color-main) 25%, transparent);
   }
+}
+
+:lang(ja) {
+  font-family: var(--font-jp);
 }

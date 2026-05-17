@@ -1,11 +1,24 @@
 export type WorkTag = "design" | "writing" | "development";
 
+export interface ExternalCard {
+  title: string;
+  description?: string;
+  image?: string;
+  siteName?: string;
+}
+
 export interface WorkItem {
   id: string;
   title: string;
   description: string;
-  /** 画像パス（public 配下）。未指定なら規定サムネイル */
+  /** グリッドカード用サムネイル（public 配下） */
   thumbnail?: string;
+  /** 詳細ページ左側に表示する画像（public 配下）。未指定なら thumbnail にフォールバック */
+  detailImage?: string;
+  /** 詳細ページの本文。未指定なら description を使用 */
+  body?: string;
+  /** 外部リンクのカード情報。指定時は詳細ページの画像エリアにカードを表示 */
+  externalCard?: ExternalCard;
   tags: WorkTag[];
   link?: string;
   /** 並び順用（新しいほど大きい値推奨） */
@@ -14,13 +27,19 @@ export interface WorkItem {
 
 export const workItems: WorkItem[] = [
   {
-    id: "sample-vr-stage",
-    title: "VRイベント用ステージビジュアル",
+    id: "mixtourpro-djay-note",
+    title: "Mixtour Pro x djayが良いぞという話",
     description:
-      "VRChatワールド向けのライティングとシェーダー調整を担当。来場者の導線を意識した空間設計です。",
-    tags: ["design", "development"],
-    link: "#",
-    date: "2025-11-01",
+      "DJ機材のレビュー記事。製品の特徴をわかりやすく伝えることを意識して、実際の使用感や他製品との比較も交えて執筆しました。",
+    body: "Mixtour Proは、初心者からプロまで幅広いDJに対応した高性能なコントローラーです。特にdjayとの組み合わせで、直感的な操作と豊富な機能が魅力的です。この記事では、Mixtour Proの特徴やdjayとの相性について詳しく解説します。",
+    tags: ["writing"],
+    link: "https://note.com/_misoka/n/n06c717bec78b",
+    externalCard: {
+      title: "Mixtour Pro x djayが良いぞという話",
+      image: "mixtourpro.webp",
+      siteName: "note",
+    },
+    date: "2026-04-07",
   },
   {
     id: "sample-script",

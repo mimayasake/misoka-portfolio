@@ -47,6 +47,15 @@ import logo from '../assets/logo.svg';
 <script is:inline>
   (function () {
     var key = "portfolio-splash-shown";
+
+    // View Transitions: DOM 差し替え前に新ページからスプラッシュを除去
+    document.addEventListener("astro:before-swap", function (e) {
+      if (sessionStorage.getItem(key)) {
+        var newEl = e.newDocument.getElementById("portfolio-splash");
+        if (newEl) newEl.remove();
+      }
+    });
+
     var el = document.getElementById("portfolio-splash");
     if (!el) return;
 
