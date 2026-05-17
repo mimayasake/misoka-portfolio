@@ -24,7 +24,9 @@ const externalCardImage = item.externalCard?.image
   ? asset(item.externalCard.image)
   : null;
 
-const bodyText = item.body ?? item.description;
+const rawBody = item.body ?? item.description;
+const bodySegments: import("../../data/works").BodySegment[] =
+  Array.isArray(rawBody) ? rawBody : [rawBody];
 ---
 
 <BaseLayout title={item.title} description={item.description}>
@@ -105,7 +107,18 @@ const bodyText = item.body ?? item.description;
         </div>
 
         <div class="text-base leading-relaxed text-[#1d1d1d]/85 whitespace-pre-line">
-          {bodyText}
+          {bodySegments.map((seg) =>
+            typeof seg === "string" ? (
+              seg
+            ) : (
+              <a
+                href={seg.href}
+                class="text-[#6822ff] underline underline-offset-2 hover:opacity-70 transition-opacity"
+              >
+                {seg.text}
+              </a>
+            )
+          )}
         </div>
 
         <div class="mt-auto flex flex-wrap items-center gap-4 text-sm text-[#1d1d1d]/40">

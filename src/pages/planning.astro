@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import WorkGrid from "../components/WorkGrid.astro";
+import { worksByTag } from "../data/works";
+
+const items = worksByTag("planning");
+---
+
+<BaseLayout
+  title="Planning"
+  description="プランニングタグの制作物一覧 — イベント企画、構成、ディレクションなど。"
+>
+  <Header />
+  <main>
+    <WorkGrid items={items} heading="Planning" id="planning-works" />
+  </main>
+</BaseLayout>

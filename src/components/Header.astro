@@ -8,6 +8,7 @@ const links = [
   { href: `${base}design`, label: "Design" },
   { href: `${base}writing`, label: "Writing" },
   { href: `${base}development`, label: "Development" },
+  { href: `${base}planning`, label: "Planning" },
 ];
 
 function isActive(href: string): boolean {
@@ -34,6 +35,7 @@ function isActive(href: string): boolean {
         links.map(({ href, label }) => (
           <a
             href={href}
+            data-nav-href={href}
             class:list={[
               "rounded-md px-2.5 py-1.5 transition-colors md:px-3",
               isActive(href)
@@ -48,3 +50,26 @@ function isActive(href: string): boolean {
     </nav>
   </div>
 </header>
+
+<script>
+  function updateActiveNav() {
+    const pathname = window.location.pathname;
+    document.querySelectorAll<HTMLAnchorElement>("[data-nav-href]").forEach((link) => {
+      const href = link.getAttribute("data-nav-href") ?? "";
+      const active =
+        href === "/"
+          ? pathname === "/" || pathname === ""
+          : pathname === href || pathname.startsWith(href + "/");
+
+      if (active) {
+        link.classList.remove("text-[#1d1d1d]/80", "hover:bg-[#1d1d1d]/5", "hover:text-[#6822ff]");
+        link.classList.add("bg-[#6822ff]/10", "text-[#6822ff]");
+      } else {
+        link.classList.remove("bg-[#6822ff]/10", "text-[#6822ff]");
+        link.classList.add("text-[#1d1d1d]/80", "hover:bg-[#1d1d1d]/5", "hover:text-[#6822ff]");
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", updateActiveNav);
+</script>

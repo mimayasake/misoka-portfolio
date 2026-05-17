@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import { asset } from "../utils/path";
 ---
 
 <BaseLayout
@@ -10,18 +11,24 @@ import Header from "../components/Header.astro";
   <Header />
   <main class="mx-auto max-w-3xl px-5 py-12 md:px-8 md:py-16">
     <h1 class="text-4xl font-bold tracking-tight text-[#1d1d1d]">About</h1>
-    <p class="mt-3 text-lg text-[#6822ff]">VR・イベント制作を志すクリエイター</p>
 
     <div class="mt-10 max-w-none space-y-6 text-[#1d1d1d]/85">
+      <div class="flex items-center gap-5">
+        <img
+          src={asset("prof-sd.jpg")}
+          alt="misoka"
+          class="h-20 w-20 rounded-full border-2 border-[#6822ff]/30 object-cover shrink-0"
+        />
+        <h1 class="text-2xl font-semibold tracking-tight text-[#1d1d1d]">misoka</h1>
+      </div>
+      <p class="text-xs">illust: <a href="https://x.com/aster_poipoi" target="_blank" rel="noopener noreferrer">@aster_poipoi</a></p>
       <p class="text-base leading-relaxed">
-        はじめまして、<strong class="text-[#1d1d1d]">misoka</strong>です。VRChat上での交流やイベントに惹かれ、ワールドや企画の制作に携わるようになりました。音楽イベントや展示系の企画では、来場者が迷わず楽しめる導線と、世界観がぶれないビジュアルづくりを大切にしています。
+        2021/5よりVRChatを始める。コロナ禍の最中、自身の趣味であったバンドイベントや活動が縮小される中、何かしらの形で音楽に関わるイベントを探す中でVRDJという界隈に出会い、以降2021/8より精力的にDJ活動を行いながら、その中でのイベントおよび関連するビジュアル制作を行うようになる。
       </p>
       <p class="text-base leading-relaxed">
-        デザイン（キービジュアル、空間のトーン）、ライティング（告知文・台本・マニュアル）、開発（UdonSharp やギミック周り）を横断して対応できます。規模の小さなチームや個人サークルとの相性も良いです。
+        また、並行して2019～2024年にかけて、Webセキュリティを手掛ける企業においてWeb・スマートフォンアプリケーションの脆弱性診断士として従事。キャリア前期については診断チームを組んでの案件進行・管理を担当。キャリア後期においては社内研修の講師および企画を担当し、業界未経験の新入社員を対象にしたカリキュラムをチーム共同で制作するなどの教育経験を積む。
       </p>
-      <p class="text-base leading-relaxed">
-        現在は、VRに関連したイベント制作会社への参画を目指しており、現場の制作フローに早く馴染めるようドキュメント化やすり合わせを丁寧に行います。まずはポートフォリオの各カテゴリをご覧いただき、ご縁がありましたらお声がけください。
-      </p>
+      
     </div>
   </main>
 </BaseLayout>
