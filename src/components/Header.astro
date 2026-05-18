@@ -2,13 +2,13 @@
 import { base } from '../utils/base';
 
 const pathname = Astro.url.pathname;
+const navItems = ["About", "Design", "Writing", "Development", "Planning"];
 const links = [
   { href: base, label: "Home" },
-  { href: `${base}about`, label: "About" },
-  { href: `${base}design`, label: "Design" },
-  { href: `${base}writing`, label: "Writing" },
-  { href: `${base}development`, label: "Development" },
-  { href: `${base}planning`, label: "Planning" },
+  ...navItems.map(label => ({
+    label,
+    href: `${base}${label.toLowerCase()}`,
+  })),
 ];
 
 function isActive(href: string): boolean {
