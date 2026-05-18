@@ -96,6 +96,20 @@ export const workItems: WorkItem[] = [
     tags: ["design", "planning"],
     date: "2024-02-02",
   },
+  {
+    id: "burpsuite-hands-on",
+    title: "Burp Suiteを使用した脆弱性診断ハンズオンの実施",
+    description: "Burp Suiteを使用した脆弱性診断のハンズオンを実施しました。",
+    thumbnail: "",
+    body: "有志の依頼にて、少人数規模でのBurp Suiteを使用した脆弱性診断のハンズオンを実施しました。\n既にWebサイト開発への知見を持った方を対象とし、ツールの導入から模擬サイトを利用した機能の実演・実使用までをカバーする内容となっております。\n",
+    tags: ["writing", "planning"],
+    link: "https://docs.google.com/document/d/1f-jZ904k_cn83i2qxmcZX_i_yBbnrNwNwYbunYfEO4w/edit?usp=drivesdk",
+    externalCard: {
+      title :"Burpハンズオン",
+      siteName:"Google Document"
+    }
+    date: "2024-02-17"
+  }
 ];
 
 /** 新しい作品ほど先頭（グリッド左上から）に来るよう日付降順で並べます */
