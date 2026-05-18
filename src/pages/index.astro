@@ -38,8 +38,7 @@ const sortedWorks = worksSortedByDateDesc(workItems);
     const vh = window.innerHeight;
     const progress = Math.min(scrollY / vh, 1);
     const blur = progress * 12;
-    const brightness = 1 + progress * 0.4;
-    bg.style.filter = `blur(${blur}px) brightness(${brightness})`;
+    bg.style.filter = `blur(${blur}px)`;
   }
 
   window.addEventListener('scroll', updateBg);
