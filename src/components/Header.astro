@@ -146,6 +146,18 @@ function isActive(href: string): boolean {
   }
 
   document.addEventListener("astro:page-load", () => {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('menu-btn');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+    const line3 = document.getElementById('line3');
+
+    menu?.classList.add('hidden');
+    btn?.setAttribute('aria-expanded', 'false');
+    line1?.classList.remove('translate-y-2', 'rotate-45');
+    line2?.classList.remove('opacity-0');
+    line3?.classList.remove('-translate-y-2', '-rotate-45');
+
     initHeader();
     updateActiveNav();
   });
