@@ -31,17 +31,16 @@ const sortedWorks = worksSortedByDateDesc(workItems);
 </BaseLayout>
 
 <script>
-  const bg = document.getElementById('bg');
-  
   function updateBg() {
-    const scrollY = window.scrollY;
-    const vh = window.innerHeight;
-    const progress = Math.min(scrollY / vh, 1);
-    const blur = progress * 12;
-    bg.style.filter = `blur(${blur}px)`;
+    const bg = document.getElementById('bg');
+    if (!bg) return;
+    const progress = Math.min(window.scrollY / window.innerHeight, 1);
+    bg.style.filter = `blur(${progress * 12}px)`;
   }
 
-  window.addEventListener('scroll', updateBg);
-  window.addEventListener('pageshow', updateBg);  
-  updateBg(); 
+  document.addEventListener('astro:page-load', () => {
+    window.removeEventListener('scroll', updateBg);
+    window.addEventListener('scroll', updateBg);
+    updateBg();
+  });
 </script>
