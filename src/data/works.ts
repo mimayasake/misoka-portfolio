@@ -107,8 +107,8 @@ export const workItems: WorkItem[] = [
     externalCard: {
       title :"Burpハンズオン",
       siteName:"Google Document"
-    }
-    date: "2024-02-17"
+    },
+    date: "2024-02-17",
   }
 ];
 
