@@ -32,13 +32,17 @@ const sortedWorks = worksSortedByDateDesc(workItems);
 
 <script>
   const bg = document.getElementById('bg');
-  window.addEventListener('scroll', () => {
+  
+  function updateBg() {
     const scrollY = window.scrollY;
     const vh = window.innerHeight;
     const progress = Math.min(scrollY / vh, 1);
-    
     const blur = progress * 12;
-    
-    bg.style.filter = `blur(${blur}px)`;
-  });
+    const brightness = 1 + progress * 0.4;
+    bg.style.filter = `blur(${blur}px) brightness(${brightness})`;
+  }
+
+  window.addEventListener('scroll', updateBg);
+  window.addEventListener('pageshow', updateBg);  
+  updateBg(); 
 </script>
