@@ -30,7 +30,7 @@ export interface WorkItem {
 export const workItems: WorkItem[] = [
   {
     id: "4kicks",
-    title: "DJ Event「4KICKs」",
+    title: "DJイベント「4KICKs」",
     description:
       "4つ打ちをテーマとしたDJイベントを企画・フライヤーの制作を行いました",
     thumbnail: "works/4KICKs.png",
@@ -67,7 +67,7 @@ export const workItems: WorkItem[] = [
   },
   {
     id: "rftp-flyer",
-    title: "DJ Event「Remember Future Teaparty」",
+    title: "DJイベント「Remember Future Teaparty」フライヤー制作",
     description:
       "Future系のEDMをテーマとしたDJイベントのフライヤー制作を担当しました。",
     thumbnail: "works/RFTP.png",
